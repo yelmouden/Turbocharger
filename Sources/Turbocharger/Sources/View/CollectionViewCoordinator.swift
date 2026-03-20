@@ -326,7 +326,8 @@ where
         updateDataSource(
             sections: sections,
             animated: animation != nil,
-            completion: { updated in
+            completion: { [weak self] updated in
+                guard let self else { return }
                 if animation != nil {
                     self.collectionView.performBatchUpdates {
                         changes(updated)
